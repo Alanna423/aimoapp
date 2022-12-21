@@ -1,24 +1,34 @@
 import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Login from './components/login';
+import CreateAccount from './components/createaccount';
+import NavBar from './components/navbar';
+import Home from './components/home';
 
 function App() {
+  let loggedIn = false
+  let hasAccount = true
+  let user = 'Me'
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main> {
+      loggedIn === true ?
+      (
+        hasAccount === true ?
+        <Login />
+        :
+        <CreateAccount />
+      )
+      :
+      <React.Fragment>
+        <NavBar></NavBar>
+        <div className='container'>
+          <Home name={user}></Home>
+        </div>
+      </React.Fragment>
+    } 
+    </main>
   );
 }
 
